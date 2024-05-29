@@ -1,10 +1,10 @@
 FROM golang:1.22 as builder
 
 WORKDIR /
-COPY main.go .
+COPY . .
 RUN go build -o goapp main.go
 
 FROM alpine:latest
-COPY --from=builder /goapp .
+COPY --from=builder /goapp /goapp
 
-CMD ["./goapp"]
+CMD ["/goapp"]
